@@ -3,34 +3,26 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {useState,useEffect} from 'react'
 import axios from 'axios'
-
 export default function Home() {
-  const [datafa, setDatafa] = useState(null);
-
-  const message =async (e) => {
-    let selected=e.target.files[0];
-    console.log(selected);
-    let data=new FormData();
-    data.append('file',selected)
-    console.log(data);
-    try {
-
-      
-      let res=await axios.post('http://127.0.0.1:8000/uploadfile/',selected,{
-        headers: {
-          'enctype': 'multipart/form-data'
-        }
-      });
-      let result=res.data;
-      setDatafa(result);
-      console.log(res.data);
+  const  postdata=async(e)=>{
+    try{
+    e.preventDefault();
+    const selected=e.target.files[0];
+    console.log(e.target.files[0])
+    const formData=new FormData();
+    formData.append("csv_file",e.target.files[0])
+    const res= await axios.post('http://127.0.0.1:8000/uploadfile',formData,{
+      headers:{
+        'accept': 'application/json',
+        'enctype':'multipart/form-data'
+      }
+    })
+    console.log(res.data);
     }
-    catch(err) {
-      console.error(err);
+    catch(err){
+      console.log(err)
     }
-  };
-  
-  
+   }
   return (
     <div className={styles.container}>
       <Head>
@@ -39,17 +31,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <form>
-      <input type="file" onChange={message} />
-        <input type="submit" />
-      </form>
-     
-     {!datafa ?
-     <h1>loading...</h1>
-     :
-<h1>{datafa}</h1>
-     }
+     <h1>Upload the CSV file to the database</h1>
+     <input type="file" onChange={postdata} />
+     {/*file && <div>{file.name}</div>*/}
 
-     <h1>hello</h1>
+     </form>    
     </div>
   )
 }
