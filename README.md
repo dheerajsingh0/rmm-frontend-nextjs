@@ -1,3 +1,18 @@
+Follow step
+
+1 install nodejs
+2 open cmd to project folder and run `npm install'
+3 fater installing all the packages 
+        run the frontend server   'yarn dev' or 'npm start'
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
