@@ -101,7 +101,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <svg class="animate-bounce w-6 h-6 ...">
+                <svg className="animate-bounce w-6 h-6 ...">
   
                   </svg>
               </div>
